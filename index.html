@@ -44,7 +44,7 @@
             margin-top: 20px;
             padding: 15px;
             border: 1px solid #ddd;
-            background-color: #f9f9f9;
+            background-color: #e0ffff; /* Light cyan background */
             text-align: left;
         }
         #rulesBox {
@@ -81,14 +81,14 @@
 <body>
 
     <div class="container">
-        <h2>Permutation Calculator</h2>
+        <h2>৫ম অধ্যায়ের বিন্যাস</h2>
         <input type="text" id="nameInput" placeholder="Enter a name" oninput="this.value = this.value.toUpperCase();">
         <button onclick="calculatePermutation()">Submit</button>
         
         <div id="resultBox"></div>
 
         <div id="rulesBox">
-            <p>RR💎💗💓✨RR</p>
+            <p>অংকের নিময় লিখে বা বলে বোঝানো যাবেনা কারণ ! এই চিহ্নের কাজ সরাসরি ক্যালকুলেটর দিয়ে দেখাতে হবে</p>
             <button onclick="window.open('https://wa.me/+8801405985541', '_blank')">Help</button>
         </div>
 
@@ -140,27 +140,33 @@
 
             const totalPermutations = factorial(length) / denominator;
 
-            // Create the result output
+            // Create the result output with question and answer
             let result = `
+                <p>#${name} শব্দ টি কত উপায়ে সাজানো যায় ?</p>
                 <p>সমাধান:</p>
                 <table>
                     <tr>
                         <td class="label-column">মোট বর্ণ</td>
                         <td class="value-column">= ${length} টি</td>
                     </tr>
-                    ${repetitions.map(rep => `<tr><td class="label-column">${rep}</td></tr>`).join('')}
+            `;
+
+            // Add repetition information if there are any
+            if (repetitions.length > 0) {
+                repetitions.forEach(rep => {
+                    result += `<tr><td class="label-column">${rep}</td></tr>`;
+                });
+
+                result += `
+                    <tr>
+                        <td class="label-column">মোট বিন্যাস</td>
+                        <td class="value-column">= ${length}! / (${denominatorString})</td>
+                    </tr>`;
+            } else {
+                result += `
                     <tr>
                         <td class="label-column">মোট বিন্যাস</td>
                         <td class="value-column">= ${length}!</td>
-                    </tr>
-            `;
-
-            // Only show the denominator line if there are repetitions
-            if (denominatorString) {
-                result += `
-                    <tr>
-                        <td class="label-column"></td>
-                        <td class="value-column">= ${length}! / (${denominatorString})</td>
                     </tr>`;
             }
 
