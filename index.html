@@ -45,7 +45,7 @@
             padding: 15px;
             border: 1px solid #ddd;
             background-color: #e0ffff; /* Light cyan background */
-            text-align: left;
+            text-align: left; /* Align text to left */
             word-wrap: break-word; /* Prevent text overflow */
         }
         #rulesBox {
@@ -62,13 +62,14 @@
             margin: 10px 0;
         }
         td {
-            padding: 10px 5px; /* Increased padding for better spacing */
+            padding: 2px 0; /* Reduced padding for closer alignment */
             vertical-align: top;
+            text-align: left; /* Align all text to left */
         }
         .label-column {
             width: 150px; /* Adjust width to ensure alignment */
             font-weight: bold;
-            text-align: right; /* Right align labels for better layout */
+            text-align: left; /* Left align labels for better layout */
         }
         .value-column {
             text-align: left; /* Left align values to stay close to the equal sign */
@@ -162,20 +163,25 @@
                     <tr>
                         <td class="label-column">মোট বিন্যাস</td>
                         <td class="value-column">= ${length}! / (${denominatorString})</td>
+                    </tr>
+                    <tr>
+                        <td class="label-column"></td>
+                        <td class="value-column">= ${totalPermutations}</td>
                     </tr>`;
             } else {
                 result += `
                     <tr>
                         <td class="label-column">মোট বিন্যাস</td>
                         <td class="value-column">= ${length}!</td>
-                    </tr>`;
+                    </tr>
+                    <tr>
+                        <td class="label-column"></td>
+                        <td class="value-column">= ${totalPermutations}</td>
+                    </tr>
+                `;
             }
 
             result += `
-                    <tr>
-                        <td></td>
-                        <td class="value-column">= ${totalPermutations}</td>
-                    </tr>
                 </table>
                 <p>অতএব, "${name}" শব্দটি ${totalPermutations} উপায়ে সাজানো যায়।</p>
             `;
